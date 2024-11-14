@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # renovate: datasource=github-tags depName=mattermost/mattermost-mobile
-MATTERMOST_VERSION=v2.20.1
+MATTERMOST_VERSION=v2.21.0
 # renovate: datasource=github-tags depName=nvm-sh/nvm
 NVM_VERSION=v0.40.1
 
@@ -62,6 +62,8 @@ else
     BETA_BUILD=true
     BUILD_FOR_RELEASE=false
 fi
+
+sed -i 's#^distributionUrl=https\\://services.gradle.org/distributions/gradle-\(.*\)-all.zip$#distributionUrl=https\\://services.gradle.org/distributions/gradle-\1-bin.zip#' android/gradle/wrapper/gradle-wrapper.properties
 
 # Build the app
 env \
